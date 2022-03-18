@@ -1,5 +1,6 @@
+{% load static %}
 <nav style='min-height: 60px;' class='navbar navbar-dark bg-dark fixed-top navbar-expand-md'>
-  <a class='navbar-brand ml-1' href='{% url "home" %}'><h3>Islay<span class='text-success'>Whisky</span>.com</h3></a>
+  <a class='navbar-brand ml-1' href='{% url "home" %}'><img src='{% static "img/logo.jpg" %}' width="200px" height="50px"></a>
     <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#menubar' aria-controls='menubar'
       aria-expanded='false' aria-label='toggler'>
       <span class='navbar-toggler-icon'></span>
