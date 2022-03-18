@@ -12,6 +12,48 @@
 			<div class='font-italic text-white mx-4 mt-3'>{{distillery.description}}</div>
 		</div>	
 	</div>		
+</div>
+<div class='shadow p-3 mb-4 bg-dark mt-4 mx-4'>
+	<div class='row'>
+		<div class='col-lg-2 col-sm-12'>
+			<h4 class='text-white'><i class='icon-filter'></i> min. rating:</h4>
+		</div>	
+		<div class='col-lg-4 col-sm-12'>
+			<form method='get'>
+			<select class='form-control bg-dark text-white' name='rating'>
+				{% if filter_rate == 1 %}
+				<option value='1' selected>1 star</option>
+				{% else %}
+				<option value='1'>1 star</option>
+				{% endif %}
+				{% if filter_rate == 2 %}
+				<option value='2' selected>2 stars</option>
+				{% else %}
+				<option value='2'>2 stars</option>
+				{% endif %}
+				{% if filter_rate == 3 %}
+				<option value='3' selected>3 stars</option>
+				{% else %}
+				<option value='3'>3 star</option>
+				{% endif %}
+				{% if filter_rate == 4 %}
+				<option value='4' selected>4 stars</option>
+				{% else %}
+				<option value='4'>4 stars</option>
+				{% endif %}
+				{% if filter_rate == 5 %}
+				<option value='5' selected>5 stars</option>
+				{% else %}
+				<option value='5'>5 stars</option>
+				{% endif %}
+			</select>		
+		</div>
+		<div class='col-lg-4 col-sm-12'>
+			<button type='submit' class='btn btn-secondary'>Filter</button>
+			<a class='btn btn-secondary' href='{% url "pages:whisky-list" pk=distillery.pk %}'>Reset</a>
+		</div>
+		</button>	
+	</div>	
 </div>		
 <div class='row mr-2 ml-2 mt-4'>
 	{% for whisky in object_list %}

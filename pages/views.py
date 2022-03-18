@@ -22,11 +22,26 @@ class WhiskyList(ListView):
 		instance = 	get_object_or_404(Distillery, pk=self.kwargs.get('pk'))
 		queryset = Whisky.objects.filter(distillery=instance.pk)	
 		
+		if 'rating' in self.request.GET:
+			rating = int(self.request.GET.get('rating'))
+
+			whiskies = []	
+			for q in queryset:
+				avg = calculate_rating(Rating.objects.filter(whisky_id=q.pk))
+				if avg >= rating:
+					whiskies.append(q.pk)
+
+			queryset = queryset.filter(pk__in=whiskies)		
+
 		return queryset.order_by('-pk')
 
 	def get_context_data(self, *args, **kwargs):
 		context = super().get_context_data(**kwargs)
 		instance = get_object_or_404(Distillery, pk=self.kwargs.get('pk'))
+
+		if 'rating' in self.request.GET:
+				rating = int(self.request.GET.get('rating'))
+				context['filter_rate'] = rating
 
 		context['distillery'] = instance
 
