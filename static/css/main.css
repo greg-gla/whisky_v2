@@ -1,0 +1,38 @@
+body {
+	margin-top: 70px;
+    background-color: #0F222D
+}
+
+.field-error {
+	color: red;
+}
+
+.topmargin {
+	margin-top: 90px;
+}
+
+.bg-review {
+	background-color: #25272b;
+}
+
+.icon-button {
+	color: white;
+}
+
+.icon-button:hover {
+	cursor: pointer;
+	color: gray;
+}
+
+.star-button:hover {
+	cursor: pointer;
+}
+
+.user-img {
+	border-radius: 50%;
+}
+
+.edit-field:focus {
+	border: 1px solid white !important;
+	box-shadow: none;
+}

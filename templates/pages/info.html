@@ -1,0 +1,6 @@
+{% extends 'common/base.html' %}
+{% block title %} Whisky.com - Home {% endblock %}
+{% block content %}
+{% include 'common/nav.html' %}
+<h3 class='text-muted p-4'>You have already reviewed this product on {{user_review.created_at}}</h3>
+{% endblock %}

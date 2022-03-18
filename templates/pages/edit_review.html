@@ -1,0 +1,68 @@
+{% extends 'common/base.html' %}
+{% block title %} Whisky.com - Home {% endblock %}
+{% block content %}
+{% include 'common/nav.html' %}
+<div class='card box-shadow bg-dark border-0 ml-5 mr-5 mb-4 topmargin'>
+	<div class='card-header bg-review'>
+		<h3 class='text-white text-center'>Edit review</h3>
+	</div>
+	<div class='card-body'>
+		<h5 class='text-white'>Give your rating:
+			{% if object.numeric_rating < 1 %}
+			<span id='star1' class='star-button text-warning'><i class='icon-star-empty'></i></span>
+			{% else %} 
+			<span id='star1' class='star-button text-warning'><i class='icon-star'></i></span>
+			{% endif %}
+
+			{% if object.numeric_rating < 2 %}
+			<span id='star2' class='star-button text-warning'><i class='icon-star-empty'></i></span>
+			{% else %} 
+			<span id='star2' class='star-button text-warning'><i class='icon-star'></i></span>
+			{% endif %}
+			
+			{% if object.numeric_rating < 3 %}
+			<span id='star3' class='star-button text-warning'><i class='icon-star-empty'></i></span>
+			{% else %} 
+			<span id='star3' class='star-button text-warning'><i class='icon-star'></i></span>
+			{% endif %}
+
+			{% if object.numeric_rating < 4 %}
+			<span id='star4' class='star-button text-warning'><i class='icon-star-empty'></i></span>
+			{% else %} 
+			<span id='star4' class='star-button text-warning'><i class='icon-star'></i></span>
+			{% endif %}
+
+			{% if object.numeric_rating < 5 %}
+			<span id='star5' class='star-button text-warning'><i class='icon-star-empty'></i></span>
+			{% else %} 
+			<span id='star5' class='star-button text-warning'><i class='icon-star'></i></span>
+			{% endif %}
+		</h5>
+		<form method="post" class='mt-4'>
+			{% csrf_token %}
+			<input type='hidden' name='numeric_rating' id='numeric' value='{{object.numeric_rating}}'>
+			<input type='hidden' name='user_id' value='{{object.user_id.pk}}'>
+			<input type='hidden' name='whisky_id' value='{{object.whisky_id.pk}}'>
+			<h5 class='text-muted'>Your comment here:</h5>
+			<textarea class='form-control bg-dark text-white nofocus' maxlength="512" rows="5" name='verbal_rating'>{{object.verbal_rating}}</textarea>
+			<div class='mt-4 text-center'><button type='submit' class='btn btn-secondary px-4 btn-lg'>Submit</button></div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+$( document ).ready(function() {
+	$('.star-button').click(function (e) {
+		$('.star-button').html('<i class="icon-star-empty"></i>')
+		var elementId = $(this).attr('id');
+		var id = parseInt(elementId.charAt(elementId.length - 1));
+
+		for (let i=1; i<=id; i++) {
+			let starId = '#star' + i.toString();
+			$(starId).html('<i class="icon-star"></i>');
+		}
+
+		$('#numeric').val(id);
+	});
+});
+</script>		
+{% endblock %}

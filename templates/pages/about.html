@@ -1,0 +1,15 @@
+{% extends 'common/base.html' %}
+{% block title %} About Page {% endblock %}
+{% block content %}
+{% include 'common/nav.html' %}
+{% load static %}
+        <link rel='stylesheet' href='{% static "css/about.css" %}'>
+        <h1>Welcome to our About Page</h1>
+        <img src= "{% static 'img/islay.jpeg' %}" alt="The image should be here" class="center"/> 
+        <div>
+            <p>We are a group of whisky enthusiasts that want to help people find and rate the best whisky from Islay.
+                Our goal is to help tourist to the Islay region in Scottland have the best experiences possible. 
+            </p>
+            
+        </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'common/base.html' %}
+{% block title %} Whisky.com - Home {% endblock %}
+{% block content %}
+{% include 'common/nav.html' %}
+<div class='row ml-4 mr-4'>
+	{% for distillery in distilleries %}
+	<div class='col-lg-3 col-md-6 col-sm-12'>
+		<div class='text-center bg-dark p-3 mt-3 shadow'>
+			<img src="{{distillery.logo.url}}" width="100px" height="100px">
+			<h5 class='pt-1 text-white'>{{distillery.name}}</h5>
+			<a class='btn btn-secondary' href='{% url "pages:whisky-list" pk=distillery.pk %}'>View Products</a>	
+		</div>	
+	</div>
+	{% empty %}
+	<h2 class='text-muted mt-3'>No distilleries. Please run 'populate_whisky.py'</h2> 
+	{% endfor %}			
+</div>	
+{% endblock %}

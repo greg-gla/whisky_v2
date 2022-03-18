@@ -1,0 +1,34 @@
+{% extends 'common/base.html' %}
+{% block title %} Whisky.com - Home {% endblock %}
+{% block content %}
+{% include 'common/nav.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/Google-Style-Login.css' %}">
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+<div class="login-card"><img class="profile-img-card" src="{% static 'img/avatar_2x.png' %}">
+    <p class="profile-name-card"></p>
+    <form class="form-signin" action="" method="POST">{% csrf_token %}<span class="reauth-email"> </span><input
+            class="form-control" type="email" id="inputEmail" name="email" required="" placeholder="Email address"
+            autofocus=""><input class="form-control" type="password" id="inputPassword" required="" name="password"
+                                placeholder="Password">
+        <div
+                class="checkbox">
+            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"><label
+                    class="form-check-label" for="formCheck-1">Remember me</label></div>
+        </div>
+        {% for field in login_form %}   
+        <p>
+            {% for error in field.errors %}
+            <p class="field-error">{{ error }}</p>
+            {% endfor %}
+        </p>
+        {% endfor %}
+        {% if login_form.non_field_errors %}
+        <div class="field-error">
+            <p>{{login_form.non_field_errors}}</p>
+        </div>
+        {% endif %}
+        <button class="btn btn-primary btn-block btn-lg btn-signin" type="submit">Sign in</button>
+    </form>
+</div>
+{% endblock %}

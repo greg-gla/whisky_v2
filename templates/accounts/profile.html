@@ -1,0 +1,60 @@
+{% extends 'common/base.html' %}
+{% block title %} Whisky.com - Home {% endblock %}
+{% block content %}
+{% include 'common/nav.html' %}
+{% load static %}
+<div class='row mr-4 ml-4'>
+	<div class='col-lg-2'></div>
+	<div class='col-lg-8'>
+		<div class='card-deck mb-3 mt-4'>
+			<div class='card mb-4 box-shadow bg-dark'>
+				<div class='text-center'>
+					<img class="user-img mt-3 w-25" src="{% static 'img/avatar_2x.png' %}">
+				</div>
+				<form method="post">
+					{% csrf_token %}
+					<div class='d-flex flex-row m-4'>
+						<label class='text-muted font-weight-bold pt-2 mr-1 w-25'>Username:</label>
+						<input type='text' name='username' class='w-50 form-control border-0 text-white edit-field bg-dark' value='{{request.user.username}}'>
+						<div><i class='icon-pencil icon-button ml-1' id='username-icon'></i></div>
+					</div>
+					<div class='d-flex flex-row mx-4 mb-4'>
+						<label class='text-muted font-weight-bold pt-2 mr-1 w-25'>Email:</label>
+						<input type='email' name='email' class='w-50 form-control border-0 text-white edit-field bg-dark' value='{{request.user.email}}'>
+						<div><i class='icon-pencil icon-button ml-1' id='email-icon'></i></div>
+					</div>	
+					<div class='d-flex flex-row mx-4 mb-4'>
+						<label class='text-muted font-weight-bold pt-2 mr-1 w-25'>Date joined:</label>
+						<label class='text-white font-weight-bold pt-2 mr-1 w-50 pl-2'>{{request.user.date_joined}}</label>
+					</div>
+					{% for field in form %}
+					<p>
+					{% for error in field.errors %}
+					<p class='field-error text-center'>{{ error }}</p>
+					{% endfor %}
+					</p>
+					{% endfor %}
+					{% if form.non_field_errors %}
+					<div class='field-error text-center'>
+					<p>{{form.non_field_errors}}</p>
+					</div>
+
+					{% endif %}
+					<div class='text-center'>
+						<button type='submit' class='btn btn-secondary btn-lg mb-4'>Save</button>
+					</div>	
+				</form>	
+			</div>
+		</div>
+	</div>
+</div>				
+<script type="text/javascript">
+$('#username-icon').click(function () {
+	$('input[name="username"]').select();
+});
+
+$('#email-icon').click(function () {
+	$('input[name="email"]').select();
+});	
+</script>	
+{% endblock %}

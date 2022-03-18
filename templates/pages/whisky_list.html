@@ -1,0 +1,35 @@
+{% extends 'common/base.html' %}
+{% block title %} Whisky.com - {{distillery.name}} {% endblock %}
+{% block content %}
+{% include 'common/nav.html' %}
+<div class='ml-4 mr-4 shadow bg-dark topmargin'>
+	<h1 class='text-center text-white pt-3'>{{distillery.name}}</h1>
+	<div class='row mx-4 pb-4'>
+		<div class='col-lg-2 col-sm-12'>
+			<img src="{{distillery.logo.url}}" height="200px" width="200px">
+		</div>
+		<div class='col-lg-8 col-sm-12'>
+			<div class='font-italic text-white mx-4 mt-3'>{{distillery.description}}</div>
+		</div>	
+	</div>		
+</div>		
+<div class='row mr-2 ml-2 mt-4'>
+	{% for whisky in object_list %}
+	<div class='col-lg-6 col-sm-12'>
+		<div class='shadow p-3 mb-4 bg-dark'>
+			<div class='d-flex flex-row'>
+				<img src="{{whisky.image.url}}" height="100px" width="100px">
+				<div class='ml-2 pt-2'>
+					<div class='text-white'>Name: {{whisky.name}}</div>
+					<div class='text-white'>Age: {{whisky.age}}</div>
+					<div class='text-white'>Abv: {{whisky.abv}}%</div>
+				</div>
+				<div class='ml-auto mt-auto'>
+					<a class='btn btn-secondary' href='{% url "pages:view-whisky" pk=whisky.pk %}'>View <i class='icon-right-big'></i></a>
+				</div>	
+			</div>	
+		</div>	
+	</div>
+	{% endfor %}	
+</div>
+{% endblock %}
