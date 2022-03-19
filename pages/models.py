@@ -45,5 +45,6 @@ class Rating(models.Model):
     whisky_id = models.ForeignKey(Whisky,on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
+
     def __str__(self) :
         return self.verbal_rating
