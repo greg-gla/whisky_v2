@@ -4,15 +4,17 @@ step1. Enter the project directory '*WHISKY_V2/*', open the terminal , enter the
 ```
 python manage.py makemigrations pages accounts
 ```
-step2. create your own superuser
+
+step2 migrate the database again
+```
+python manage.py migrate
+```
+
+step3. create your own superuser
 ```
 python manage.py createsuperuser
 ```
 
-step3 migrate the database again
-```
-python manage.py migrate
-```
 the database will generate automatically
 
 step4. run *populate_whisky.py* will insert some testing data into the database
